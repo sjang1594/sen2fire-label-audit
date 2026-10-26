@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Datasets (download separately, see README)
+data/
+Data/
+*.npz
+*.tif
+*.tiff
+
+# Checkpoints (released on Zenodo, not in git)
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.keras
+*.safetensors
+
+# Census panel images (released on Zenodo, not in git)
+census/panels/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
