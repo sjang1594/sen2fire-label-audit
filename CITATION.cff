@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below."
+type: software
+title: "sen2fire-label-audit: code for The Labels Are the Ceiling: A Model-Free Audit of Sen2Fire"
+authors:
+  - family-names: Jang
+    given-names: Seungho
+  - family-names: Singh
+    given-names: Rumandeep
+  - family-names: Bhatia
+    given-names: Sanjiv K.
+  - family-names: Bhaskaran
+    given-names: Sunil
+license: MIT
+repository-code: "https://github.com/sjang1594/sen2fire-label-audit"
