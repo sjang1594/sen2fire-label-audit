@@ -1,0 +1,15 @@
+# SegFormer-B2 in the state-of-the-art comparison table.
+name: sen2fire_segformer_dice
+legacy_id: E9
+dataset: sen2fire
+model: segformer
+optimizer: discriminative
+pretrained_key: segformer
+batch_size: 2
+macro_min_cov: 0.001
+loss: dice_batch_both_classes
+max_epochs: 100
+augment: true
+runs:
+  - strategy: [Vanilla, All-indices, SWIR]
+    seed: [42, 1, 2]

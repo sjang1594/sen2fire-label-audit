@@ -1,0 +1,24 @@
+# Attention U-Net with weighted cross-entropy (w = 20) plus Dice.
+name: sen2fire_attunet_combo
+legacy_id: E1, E1-AUG, E-CH64
+loss: combo
+fire_weight: 20.0
+max_epochs: 50
+dataset: sen2fire
+model: attunet
+optimizer: uniform
+batch_size: 8
+macro_min_cov: 0.001
+runs:
+  - strategy: [Vanilla, All-indices, SWIR, "Vanilla + AOD", "All-indices + AOD", "SWIR + AOD"]
+    augment: [false]
+    base_ch: [32]
+    seed: [42, 1, 2]
+  - strategy: [Vanilla, All-indices, SWIR]
+    augment: [true]
+    base_ch: [32]
+    seed: [42, 1, 2]
+  - strategy: [Vanilla, All-indices]
+    augment: [false, true]
+    base_ch: [64]
+    seed: [42, 1, 2]

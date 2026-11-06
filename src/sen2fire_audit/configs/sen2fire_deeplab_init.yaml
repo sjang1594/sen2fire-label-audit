@@ -1,0 +1,27 @@
+# Supplementary Table S18. Only these runs use persistent DataLoader workers.
+name: sen2fire_deeplab_init
+legacy_id: none
+dataset: sen2fire
+model: deeplab
+batch_size: 4
+macro_min_cov: 0.001
+loss: dice_batch_both_classes
+max_epochs: 100
+augment: true
+strategy: Vanilla
+persistent_workers: true
+runs:
+  - arm: [coco]
+    init: coco
+    optimizer: discriminative
+    pretrained_key: backbone
+    seed: [42, 1, 2]
+  - arm: [imagenet]
+    init: imagenet
+    optimizer: discriminative
+    pretrained_key: backbone
+    seed: [42, 1, 2]
+  - arm: [scratch]
+    init: scratch
+    optimizer: uniform
+    seed: [42, 1, 2]

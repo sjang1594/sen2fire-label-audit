@@ -1,0 +1,15 @@
+# Attention U-Net with Dice: Table of the multi-seed comparison; base_ch 64 in the capacity comparison.
+name: sen2fire_attunet_dice
+legacy_id: E1, E1-AUG, E-CH64
+loss: dice_batch_both_classes
+max_epochs: 100
+dataset: sen2fire
+model: attunet
+optimizer: uniform
+batch_size: 8
+macro_min_cov: 0.001
+runs:
+  - strategy: [Vanilla, All-indices]
+    augment: [false, true]
+    base_ch: [32, 64]
+    seed: [42, 1, 2]

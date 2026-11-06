@@ -1,0 +1,14 @@
+# CaBuAr comparison table.
+name: cabuar_attunet
+legacy_id: E10
+model: attunet
+base_ch: 32
+optimizer: uniform
+dataset: cabuar
+batch_size: 4
+macro_min_cov: 0.001
+loss: dice_per_image_fire
+max_epochs: 100
+augment: true
+runs:
+  - seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]

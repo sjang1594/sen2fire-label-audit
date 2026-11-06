@@ -1,0 +1,17 @@
+# Sen2Fire Attention U-Net with the CaBuAr Dice and batch size.
+name: sen2fire_attunet_cabuar_impl
+legacy_id: E13
+loss: dice_per_image_fire
+max_epochs: 100
+augment: true
+base_ch: 32
+strategy: Vanilla
+evidence_recall: true
+dataset: sen2fire
+model: attunet
+optimizer: uniform
+batch_size: 4
+macro_min_cov: 0.001
+runs:
+  - arm: [cabuar_impl]
+    seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]

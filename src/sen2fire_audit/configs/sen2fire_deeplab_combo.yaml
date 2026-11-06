@@ -1,0 +1,17 @@
+# DeepLabV3 with the Combo loss, no augmentation, in the same table.
+name: sen2fire_deeplab_combo
+legacy_id: E4
+loss: combo
+fire_weight: 20.0
+max_epochs: 50
+augment: false
+dataset: sen2fire
+model: deeplab
+init: coco
+optimizer: discriminative
+pretrained_key: backbone
+batch_size: 4
+macro_min_cov: 0.001
+runs:
+  - strategy: [SWIR]
+    seed: [42, 1, 2]

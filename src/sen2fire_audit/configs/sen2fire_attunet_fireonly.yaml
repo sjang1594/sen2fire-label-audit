@@ -1,0 +1,20 @@
+# Training without empty-label patches. The reported macro-F1 uses any labeled fire.
+name: sen2fire_attunet_fireonly
+legacy_id: E12 Sen2Fire
+loss: dice_batch_both_classes
+max_epochs: 100
+augment: true
+base_ch: 32
+strategy: Vanilla
+evidence_recall: true
+dataset: sen2fire
+model: attunet
+optimizer: uniform
+batch_size: 8
+macro_min_cov: 0.0
+runs:
+  - arm: [fireonly]
+    burn_free_weight: 0.0
+    seed: [42, 1, 2, 3, 4]
+  - arm: [baseline_bridge]
+    seed: [42, 1, 2]

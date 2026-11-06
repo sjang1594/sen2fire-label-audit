@@ -1,0 +1,16 @@
+# DeepLabV3 in the state-of-the-art comparison table.
+name: sen2fire_deeplab_dice
+legacy_id: E4
+loss: dice_batch_both_classes
+max_epochs: 100
+augment: true
+dataset: sen2fire
+model: deeplab
+init: coco
+optimizer: discriminative
+pretrained_key: backbone
+batch_size: 4
+macro_min_cov: 0.001
+runs:
+  - strategy: [Vanilla, All-indices, SWIR]
+    seed: [42, 1, 2]

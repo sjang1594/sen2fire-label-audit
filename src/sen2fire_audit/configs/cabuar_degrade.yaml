@@ -1,0 +1,16 @@
+# Within-task control table.
+name: cabuar_degrade
+legacy_id: E11
+model: attunet
+base_ch: 32
+optimizer: uniform
+degrade: true
+dataset: cabuar
+batch_size: 4
+macro_min_cov: 0.001
+loss: dice_per_image_fire
+max_epochs: 100
+augment: true
+runs:
+  - arm: [resolution, inflate_area, noevid_0.35, matched_0.35, matched_0.20]
+    seed: [42, 1, 2, 3, 4]

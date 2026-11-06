@@ -1,0 +1,17 @@
+# Supplementary empty-label exposure table.
+name: cabuar_degrade_negatives
+legacy_id: E12 CaBuAr
+model: attunet
+base_ch: 32
+optimizer: uniform
+degrade: true
+empty_label_negatives: true
+dataset: cabuar
+batch_size: 4
+macro_min_cov: 0.001
+loss: dice_per_image_fire
+max_epochs: 100
+augment: true
+runs:
+  - arm: [matched_0.35, 20m]
+    seed: [42, 1, 2, 3, 4]

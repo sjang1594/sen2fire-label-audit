@@ -1,0 +1,24 @@
+# U-Net with weighted cross-entropy (w = 36.8).
+name: sen2fire_unet_wce
+legacy_id: E1, E2, E1-AUG, E-CH64
+dataset: sen2fire
+model: unet
+optimizer: uniform
+batch_size: 8
+macro_min_cov: 0.001
+loss: weighted_ce
+fire_weight: 36.8
+max_epochs: 50
+runs:
+  - strategy: [Vanilla, SWIR, "SWIR + AOD"]
+    augment: [false]
+    base_ch: [32]
+    seed: [42, 1, 2]
+  - strategy: [Vanilla, SWIR]
+    augment: [true]
+    base_ch: [32]
+    seed: [42, 1, 2]
+  - strategy: [Vanilla, SWIR]
+    augment: [false, true]
+    base_ch: [64]
+    seed: [42, 1, 2]

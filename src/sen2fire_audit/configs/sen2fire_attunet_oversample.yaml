@@ -1,0 +1,23 @@
+# Oversampling of fire-heavy patches. The reported macro-F1 contrasts use any labeled fire.
+name: sen2fire_attunet_oversample
+legacy_id: E7
+loss: dice_batch_both_classes
+max_epochs: 100
+augment: true
+base_ch: 32
+strategy: Vanilla
+evidence_recall: true
+dataset: sen2fire
+model: attunet
+optimizer: uniform
+batch_size: 8
+macro_min_cov: 0.0
+runs:
+  - arm: [baseline]
+    seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  - arm: [over50]
+    oversample_target: 0.5
+    seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  - arm: [over75]
+    oversample_target: 0.75
+    seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]

@@ -1,0 +1,25 @@
+# Supplementary Table S19.
+name: cabuar_deeplab_init
+legacy_id: none
+model: deeplab
+dataset: cabuar
+batch_size: 4
+macro_min_cov: 0.001
+loss: dice_per_image_fire
+max_epochs: 100
+augment: true
+runs:
+  - arm: [coco]
+    init: coco
+    optimizer: discriminative
+    pretrained_key: backbone
+    seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  - arm: [imagenet]
+    init: imagenet
+    optimizer: discriminative
+    pretrained_key: backbone
+    seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  - arm: [scratch]
+    init: scratch
+    optimizer: uniform
+    seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]

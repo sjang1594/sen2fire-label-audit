@@ -1,0 +1,28 @@
+# Channel ablation, Attention U-Net without the named bands.
+name: sen2fire_attunet_dropband
+legacy_id: E5
+loss: dice_batch_both_classes
+max_epochs: 100
+augment: true
+base_ch: 32
+dataset: sen2fire
+model: attunet
+optimizer: uniform
+batch_size: 8
+macro_min_cov: 0.001
+runs:
+  - arm: [full]
+    drop_bands: []
+    seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  - arm: [dropB1]
+    drop_bands: [B1]
+    seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  - arm: [dropB9]
+    drop_bands: [B9]
+    seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  - arm: [dropB1B9]
+    drop_bands: [B1, B9]
+    seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  - arm: [dropB12]
+    drop_bands: [B12]
+    seed: [42, 1, 2, 3, 4, 5, 6, 7, 8, 9]
