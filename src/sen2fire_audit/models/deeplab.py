@@ -1,13 +1,6 @@
-"""DeepLabV3 (ResNet-50) with an N-band first convolution.
+"""DeepLabV3-ResNet50 with an N-band first conv. init: 'coco' (torchvision DEFAULT,
+COCO_WITH_VOC_LABELS_V1), 'imagenet' (backbone only), 'scratch', or None (architecture only)."""
 
-init='coco' loads torchvision's DEFAULT weights, COCO_WITH_VOC_LABELS_V1: backbone and ASPP head are both
-pretrained for semantic segmentation, and no separate ImageNet backbone is loaded.
-init='imagenet' loads a ResNet-50 IMAGENET1K_V1 backbone with a randomly initialized ASPP head.
-init='scratch' uses no pretrained weights.
-
-The auxiliary head exists in every case, so that state-dict keys match, but it receives no gradient
-because forward() returns only the main output.
-"""
 import torch
 import torch.nn as nn
 from torchvision.models import ResNet50_Weights
@@ -27,8 +20,7 @@ def _base_model(init):
     raise ValueError(f'init must be one of {INITS} or None, got {init!r}')
 
 class DeepLabV3(nn.Module):
-    """ forward(x) returns the main logits. The first convolution takes the mean of the RGB filters,
-        broadcast to all input bands, so every band starts from the same filter."""
+    """Returns the main logits; the first conv starts from the mean RGB filter for every band."""
 
     def __init__(self, in_channels, num_classes=2, init='coco'):
         super().__init__()

@@ -17,7 +17,6 @@ from .models import AttentionUNet, DeepLabV3, UNet
 
 SEN2FIRE_KEYS = ('prec', 'rec', 'f1', 'miou')
 
-
 def build_model(run: Run, in_channels):
     if run.model == 'attunet':
         return AttentionUNet(in_channels, base_ch=run.base_ch)
@@ -30,7 +29,6 @@ def build_model(run: Run, in_channels):
         return SegFormer(in_channels)
     raise ValueError(run.model)
 
-
 def build_loss(run: Run):
     if run.loss == 'dice_batch_both_classes':
         return losses.dice_batch_both_classes
@@ -42,7 +40,6 @@ def build_loss(run: Run):
         return losses.combo(run.fire_weight)
     raise ValueError(run.loss)
 
-
 def build_optimizer(run: Run, model):
     if run.optimizer == 'uniform':
         return T.uniform_optimizer(model)
@@ -50,14 +47,12 @@ def build_optimizer(run: Run, model):
         return T.discriminative_optimizer(model, run.pretrained_key)
     raise ValueError(run.optimizer)
 
-
 def _smoke_train_paths(paths, shares, n):
     """Smoke test only: keep both kinds of patch, so that the samplers can draw."""
     fire = np.argsort(-shares)[:n // 2]
     empty = np.where(shares == 0)[0][:n - len(fire)]
     keep = sorted(fire.tolist() + empty.tolist())
     return [paths[i] for i in keep], shares[keep]
-
 
 def sen2fire_data(run: Run, data_dir, num_workers, limit=None):
     if run.drop_bands or run.strategy is None:
@@ -82,7 +77,6 @@ def sen2fire_data(run: Run, data_dir, num_workers, limit=None):
     val_loader = sen2fire.make_loader(val_ds, run.batch_size, shuffle=False, num_workers=num_workers,
                                       persistent_workers=run.persistent_workers)
     return train_loader, val_loader, test_ds, in_ch
-
 
 def cabuar_data(run: Run, data_dir, num_workers, limit=None):
     entries = cabuar.load_entries(cabuar.hdf5_files(data_dir))
@@ -109,7 +103,6 @@ def cabuar_data(run: Run, data_dir, num_workers, limit=None):
     val_loader = sen2fire.make_loader(val_ds, run.batch_size, shuffle=False, num_workers=num_workers)
     return train_loader, val_loader, test_ds, cabuar.IN_CHANNELS
 
-
 def score(run: Run, model, test_ds, device):
     """(summary dict, per-patch rows) of the test split."""
     if run.degrade:
@@ -126,7 +119,6 @@ def score(run: Run, model, test_ds, device):
         summary.update(E.recall_by_evidence(model, test_ds, device))
     return summary, rows
 
-
 def _append(path, row):
     new = not path.exists() or path.stat().st_size == 0
     with open(path, 'a', newline='') as f:
@@ -135,11 +127,9 @@ def _append(path, row):
             w.writeheader()
         w.writerow(row)
 
-
 def run_one(run: Run, data_dir, out_dir, device, num_workers=2, limit=None, max_epochs=None, log=print):
-    """Train and evaluate one run. An existing valid checkpoint is evaluated, never trained further.
-
-    Results go to <out_dir>/<config>/. `limit` and `max_epochs` are for smoke tests only."""
+    """Train and evaluate one run into <out_dir>/<config>/; a valid checkpoint is only evaluated.
+    `limit` and `max_epochs` are for smoke tests."""
     out = Path(out_dir) / run.config
     (out / 'checkpoints').mkdir(parents=True, exist_ok=True)
     (out / 'per_patch').mkdir(exist_ok=True)
@@ -154,7 +144,7 @@ def run_one(run: Run, data_dir, out_dir, device, num_workers=2, limit=None, max_
         log(f'{run.run_id}: valid checkpoint, evaluating only')
         model.load_state_dict(torch.load(final, map_location=device))
     else:
-        # per-epoch saves stay on the local disk; the final place, often a network drive, gets one verified copy
+        # per-epoch saves stay local; the final place gets one verified copy
         local = Path(tempfile.gettempdir()) / f'{run.run_id}.pt'
         fit = T.fit(model, train_loader, val_loader, build_loss(run), build_optimizer(run, model), local, device,
                     max_epochs=max_epochs or run.max_epochs, log=log)
@@ -171,14 +161,12 @@ def run_one(run: Run, data_dir, out_dir, device, num_workers=2, limit=None, max_
     _append(out / 'results.csv', row)
     return row
 
-
 def done_run_ids(out_dir, config):
     path = Path(out_dir) / config / 'results.csv'
     if not path.exists():
         return set()
     with open(path) as f:
         return {r['run_id'] for r in csv.DictReader(f)}
-
 
 def run_experiment(config, data_dir, out_dir, device, seeds=None, num_workers=2, log=print):
     """All runs of a config that are not yet in its results file."""
@@ -189,7 +177,6 @@ def run_experiment(config, data_dir, out_dir, device, seeds=None, num_workers=2,
         log(f'=== {run.run_id}')
         row = run_one(run, data_dir, out_dir, device, num_workers=num_workers, log=log)
         log(f'    {row}')
-
 
 def describe(run: Run):
     return {k: v for k, v in asdict(run).items() if v not in (None, (), False)}

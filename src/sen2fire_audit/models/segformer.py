@@ -1,4 +1,4 @@
-"""SegFormer with an ImageNet-pretrained MiT encoder and an N-band patch-embedding stem. Needs `transformers`."""
+"""SegFormer (ImageNet MiT encoder) with an N-band stem; needs `transformers`."""
 
 import torch
 import torch.nn as nn
@@ -6,17 +6,15 @@ import torch.nn.functional as F
 
 DEFAULT_VARIANT = 'nvidia/mit-b2'
 
-
 def build_segformer(in_channels, num_classes=2, variant=DEFAULT_VARIANT):
     from transformers import SegformerConfig, SegformerForSemanticSegmentation
 
-    # Setting num_labels on the config rebuilds id2label to the right length.
+    # also rebuilds id2label
     cfg = SegformerConfig.from_pretrained(variant)
     cfg.num_labels = num_classes
     model = SegformerForSemanticSegmentation.from_pretrained(variant, config=cfg, ignore_mismatched_sizes=True)
 
-    # The stem is the 3-channel Conv2d with the largest kernel. It takes the mean of the RGB filters,
-    # broadcast to all input bands, as in DeepLabV3.
+    # stem = largest-kernel 3-channel conv; mean RGB filter for every band
     stem_name, stem = None, None
     for name, mod in model.named_modules():
         if isinstance(mod, nn.Conv2d) and mod.in_channels == 3:
@@ -33,10 +31,8 @@ def build_segformer(in_channels, num_classes=2, variant=DEFAULT_VARIANT):
     setattr(model.get_submodule(parent), child, new)
     return model
 
-
 class SegFormer(nn.Module):
-    """ forward(x) returns logits upsampled to the input size 
-        (Note: the Hugging Face model outputs H/4)."""
+    """Returns logits upsampled to the input size (the HF model outputs H/4)."""
 
     def __init__(self, in_channels, num_classes=2, variant=DEFAULT_VARIANT):
         super().__init__()

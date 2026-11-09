@@ -1,14 +1,5 @@
-"""Model scores on a test split, from one pass over the patches.
-
-`score_patches` returns per-patch counts. Every score is then computed from those rows, so that pooled and
-per-patch numbers come from the same predictions.
-
-Which patches enter a per-patch macro-F1 is a choice the caller must state, because it changes the number:
-  min_cov=0.001  more than 0.1 % labeled fire: 99 Sen2Fire test patches, 115 CaBuAr test patches
-  min_cov=0      any labeled fire: 102 Sen2Fire test patches
-
-Precision follows the device: fp16 autocast on CUDA, fp32 on CPU. Per-patch F1 can differ slightly between them.
-"""
+"""Scores from one pass over the test patches. Per-patch macro-F1 needs min_cov:
+0.001 -> 99 Sen2Fire / 115 CaBuAr patches, 0 -> 102 Sen2Fire patches."""
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -48,10 +39,7 @@ def score_patches(model, dataset, device, threshold=0.5):
     return rows
 
 def score_degraded_arm(model, dataset, device, threshold=0.5):
-    """ One pass over a DegradeDataset built with return_clean=True. 
-        Each patch is predicted from the arm's input,
-        which is the pre-fire image for a swapped patch, 
-        and scored against both the arm's label and the clean label."""
+    """Predict each patch from the arm's input; score against the arm's label and the clean label."""
     
     model.eval()
     rows = []
@@ -64,9 +52,7 @@ def score_degraded_arm(model, dataset, device, threshold=0.5):
     return rows
 
 def degraded_arm_summary(rows, min_cov=0.001):
-    """ Scores of one arm. Three patch sets: above `min_cov` 
-        under the arm's label; above it under the clean label;
-        and the latter without swapped patches."""
+    """Arm scores on three patch sets: arm label > min_cov, clean label > min_cov, and the latter unswapped."""
     
     deg, cln = [r['degraded'] for r in rows], [r['clean'] for r in rows]
     primary = [r['degraded']['f1'] for r in rows if r['degraded']['coverage'] > min_cov]
@@ -97,14 +83,8 @@ def macro_f1(rows, min_cov):
     return float(np.mean([r['f1'] for r in fire_rows(rows, min_cov)]))
 
 def evidence_strata(image):
-    """ Spectral strata used for the oversampling readout, 
-        from reflectance in (bands, H, W): burn evidence
-        (NBR < 0 or B12 > 1), vegetation (NDVI > 0.3, NBR > 0.1, B12 < 1), 
-        and ambiguous (neither).
-        
-        These are the rules as the training readout computed them. 
-        The B12 terms are kept for that reason; on the
-        labeled pixels of the Sen2Fire test split they change no pixel's class"""
+    """Burn (NBR < 0 or B12 > 1), vegetation (NDVI > 0.3, NBR > 0.1, B12 < 1) and ambiguous strata,
+    as in the training readout."""
     
     b4, b8, b12 = image[B4_RED], image[B8_NIR], image[B12_SWIR2]
     ndvi = (b8 - b4) / (b8 + b4 + 1e-6)
@@ -114,10 +94,7 @@ def evidence_strata(image):
     return burn, vegetation, ~burn & ~vegetation
 
 def recall_by_evidence(model, dataset, device, threshold=0.5):
-    """ Recall on labeled pixels of each spectral stratum, 
-        over test patches with any labeled fire.
-        `dataset[i]` must yield model input and label, 
-        and `dataset.reflectance(i)` the 12-band image the rule reads."""
+    """Recall on labeled pixels per spectral stratum; needs dataset[i] and dataset.reflectance(i)."""
     
     model.eval()
     hit, total = np.zeros(3, dtype=np.int64), np.zeros(3, dtype=np.int64)

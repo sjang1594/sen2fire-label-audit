@@ -1,4 +1,3 @@
-"""Seeding, the training loop with early stopping, and checkpoint handling."""
 import random
 import shutil
 from dataclasses import dataclass
@@ -6,7 +5,6 @@ from pathlib import Path
 
 import numpy as np
 import torch
-
 
 def set_seed(seed):
     random.seed(seed)
@@ -16,23 +14,18 @@ def set_seed(seed):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
-
 def use_amp(device):
-    """Mixed precision on CUDA only: CPU autocast means bfloat16, which is very slow without hardware support."""
+    """AMP on CUDA Only"""
     return torch.device(device).type == 'cuda'
-
 
 def uniform_optimizer(model, lr=1e-4):
     return torch.optim.Adam(model.parameters(), lr=lr)
 
-
 def discriminative_optimizer(model, pretrained_key, pretrained_lr=1e-5, head_lr=1e-4):
-    """Lower learning rate for parameters whose name contains `pretrained_key`:
-    'backbone' for DeepLabV3, 'segformer' for SegFormer."""
+    """Lower learning rate for parameters named `pretrained_key` ('backbone', 'segformer')."""
     pretrained = [p for n, p in model.named_parameters() if pretrained_key in n]
     head = [p for n, p in model.named_parameters() if pretrained_key not in n]
     return torch.optim.Adam([{'params': pretrained, 'lr': pretrained_lr}, {'params': head, 'lr': head_lr}])
-
 
 def train_epoch(model, loader, optimizer, scaler, loss_fn, device):
     model.train()
@@ -48,7 +41,6 @@ def train_epoch(model, loader, optimizer, scaler, loss_fn, device):
         total += loss.item()
     return total / len(loader)
 
-
 @torch.no_grad()
 def eval_loss(model, loader, loss_fn, device):
     model.eval()
@@ -59,17 +51,15 @@ def eval_loss(model, loader, loss_fn, device):
             total += loss_fn(model(imgs), labels).item()
     return total / len(loader)
 
-
 @dataclass
 class FitResult:
     best_val: float
     best_epoch: int
     stop_epoch: int
 
-
 def fit(model, train_loader, val_loader, loss_fn, optimizer, checkpoint, device, *, max_epochs, patience=10, log=print):
-    """Train until early stopping. The best state dict is written to `checkpoint` and loaded back into `model`.
-    `max_epochs` is required because the experiments differ: 100 for Dice, 50 for the Combo and WCE runs."""
+    """Train until early stopping; the best state is saved to `checkpoint` and reloaded.
+    `max_epochs` is required (100 for Dice, 50 for Combo and WCE)."""
     checkpoint = Path(checkpoint)
     scaler = torch.amp.GradScaler(enabled=use_amp(device))
     best_val, best_epoch, waited, epoch = float('inf'), 0, 0, 0
@@ -87,7 +77,6 @@ def fit(model, train_loader, val_loader, loss_fn, optimizer, checkpoint, device,
     model.load_state_dict(torch.load(checkpoint, map_location=device))
     return FitResult(best_val, best_epoch, epoch)
 
-
 def checkpoint_is_valid(path):
     """A save to a network drive can silently truncate the file."""
     path = Path(path)
@@ -100,9 +89,8 @@ def checkpoint_is_valid(path):
         print(f'  unloadable checkpoint {path.name}: {e}')
         return False
 
-
 def publish_checkpoint(local_path, final_path):
-    """Copy a finished checkpoint once from the local disk to its final place, then check size and every tensor."""
+    """Copy the finished checkpoint once to its final place and verify every tensor."""
     local_path, final_path = Path(local_path), Path(final_path)
     final_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(local_path, final_path)

@@ -1,9 +1,5 @@
-"""Experiment configurations.
-
-One YAML file per experiment, in configs/. Top-level keys are defaults. Each entry of `runs` overrides them,
-and its list values are crossed to give the individual runs. The keys `strategy`, `augment`, `base_ch`, `arm`
-and `seed` may hold a list; `drop_bands` always holds one list.
-"""
+"""Experiment configs: one YAML per experiment; each `runs` entry overrides the top-level keys and
+its list values are crossed into runs."""
 from dataclasses import dataclass, field
 from importlib import resources
 from itertools import product

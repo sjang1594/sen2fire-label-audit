@@ -1,8 +1,5 @@
-"""U-Net and Attention U-Net.
-
-Attribute names and the order in which layers are created are part of the interface: the first keeps
-released checkpoints loadable, the second keeps seeded initialization reproducible.
-"""
+"""U-Net and Attention U-Net. Attribute names and layer creation order are fixed:
+released checkpoints and seeded initialization depend on them."""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -60,7 +57,6 @@ class UNet(nn.Module):
         d2 = self.dec2(torch.cat([_up(d3, c2), c2], 1))
         d1 = self.dec1(torch.cat([_up(d2, c1), c1], 1))
         return self.out(d1)
-
 
 class AttentionUNet(nn.Module):
     def __init__(self, in_channels, num_classes=2, base_ch=32):

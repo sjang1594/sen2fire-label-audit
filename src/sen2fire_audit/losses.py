@@ -11,7 +11,6 @@ def dice_batch_both_classes(logits, targets, smooth=1e-6):
     union = (probs + targets_oh).sum(dim=(0, 2, 3))
     return 1.0 - ((2.0 * inter + smooth) / (union + smooth)).mean()
 
-
 def dice_per_image_fire(logits, targets, smooth=1e-6):
     """CaBuAr experiments: fire class only, computed per image, mean over the mini-batch."""
     probs = F.softmax(logits, dim=1)[:, 1]
@@ -19,7 +18,6 @@ def dice_per_image_fire(logits, targets, smooth=1e-6):
     inter = (probs * t).sum(dim=(1, 2))
     union = probs.sum(dim=(1, 2)) + t.sum(dim=(1, 2))
     return (1 - (2 * inter + smooth) / (union + smooth)).mean()
-
 
 def weighted_ce(fire_weight):
     def loss(logits, targets):
