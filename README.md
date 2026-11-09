@@ -27,6 +27,7 @@ bootstrap intervals reproduce to the printed digit.
 | `results/census/` | Census key and response sheets |
 | `results/analysis/` | Tables written by the analysis commands, including the Supplement table rows |
 | `results/<config>/` | Training results of one configuration: `results.csv` per run, `per_patch.csv` per test patch |
+| `checkpoints/MANIFEST.csv` | Every released checkpoint: archive, file, config, run, size, SHA-256 |
 
 ## Installation
 
@@ -144,6 +145,24 @@ labeled fire: the fire-only table and the oversampling macro-F1 rows of the seed
 patch (`location.csv`). The notes of `first_author.csv` record the two entries completed after the
 first pass (S073, S079).
 
+## Checkpoints
+
+The 303 checkpoints of the configurations above and the 30 single runs behind Tables I-III are on
+Zenodo, one archive per configuration (`<config>.zip`, files named `<run_id>.pt`) and
+`reference_single_run.zip`. `checkpoints/MANIFEST.csv` lists each file with its size and SHA-256.
+Each file is a `state_dict`; every configuration checkpoint loads with `strict=True` into the model
+of this package (build DeepLabV3 with `init=None` to skip the pretrained download):
+
+```python
+import torch
+from sen2fire_audit.models import AttentionUNet
+model = AttentionUNet(12, base_ch=32)
+model.load_state_dict(torch.load('cabuar_attunet_aug_ch32_seed42.pt', map_location='cpu', weights_only=True))
+```
+
+The Table I-III runs were saved by the original single-run notebook, whose layer names differ from
+this package; they are released as recorded.
+
 ## Not yet in this repository
 
 - Commands for the main-text tables and figures, and for the input tables in `results/analysis/`
@@ -151,7 +170,7 @@ first pass (S073, S079).
   `score_by_census_location*`, `prefire_swap_filter`, `cabuar_degrade_threshold_sweep`,
   `cabuar_prefire_probe*`) and for `results/census/location.csv`.
 - Colab notebooks for training and checkpoint evaluation.
-- The checkpoint manifest (`checkpoints/MANIFEST.csv`).
+- The notebook that produced Tables I-III.
 
 ## License
 
