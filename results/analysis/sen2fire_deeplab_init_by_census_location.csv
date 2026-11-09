@@ -1,0 +1,13 @@
+arm,seeds,macro,macro_sd,inside_n,inside_f1,inside_marked,near_n,near_f1,near_marked,none_n,none_f1,none_marked,group,diff,block_lo,block_hi
+coco_discriminative,3.0,25.1838,2.7867,46.0,50.4351,34.7809,4.0,29.0816,39.5942,49.0,1.1603,1.2249,,,,
+imagenet_discriminative,3.0,26.9269,1.2368,46.0,54.3765,39.6024,4.0,24.5027,44.8173,49.0,1.3558,1.287,,,,
+scratch_uniform,3.0,25.9692,1.2746,46.0,50.5299,63.6486,4.0,41.5141,79.4142,49.0,1.6433,3.3111,,,,
+coco_discriminative - imagenet_discriminative,,,,,,,,,,,,,all 99,-1.7431,-4.5662,0.7751
+coco_discriminative - imagenet_discriminative,,,,,,,,,,,,,inside,-3.9414,-8.662,0.5454
+coco_discriminative - imagenet_discriminative,,,,,,,,,,,,,none,-0.1955,-2.5736,2.1854
+coco_discriminative - scratch_uniform,,,,,,,,,,,,,all 99,-0.7854,-4.3987,3.1924
+coco_discriminative - scratch_uniform,,,,,,,,,,,,,inside,-0.0948,-8.3747,7.0871
+coco_discriminative - scratch_uniform,,,,,,,,,,,,,none,-0.483,-3.0946,2.1937
+imagenet_discriminative - scratch_uniform,,,,,,,,,,,,,all 99,0.9577,-3.9382,5.8276
+imagenet_discriminative - scratch_uniform,,,,,,,,,,,,,inside,3.8466,-4.9563,11.2711
+imagenet_discriminative - scratch_uniform,,,,,,,,,,,,,none,-0.2875,-2.2199,1.561

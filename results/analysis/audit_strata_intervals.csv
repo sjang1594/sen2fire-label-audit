@@ -1,0 +1,13 @@
+dataset,stratum,rule,pct,patches,units,block_lo,block_hi,patch_lo,patch_hi
+sen2fire,nonfire_le1km,burn evidence,27.51,102,22,22.53,33.25,23.72,31.28
+sen2fire,nonfire_le1km,healthy vegetation,42.21,102,22,35.89,48.26,37.03,47.56
+sen2fire,nonfire_1to3km,burn evidence,29.14,100,22,21.55,37.8,24.24,34.05
+sen2fire,nonfire_1to3km,healthy vegetation,38.61,100,22,29.12,47.52,32.42,45.1
+sen2fire,nonfire_gt3km,burn evidence,29.86,69,22,20.27,40.8,22.82,37.31
+sen2fire,nonfire_gt3km,healthy vegetation,33.61,69,22,20.85,46.75,23.98,43.05
+sen2fire,nonfire_firefree_patch,burn evidence,33.04,402,41,27.19,38.94,30.63,35.47
+sen2fire,nonfire_firefree_patch,healthy vegetation,33.72,402,41,27.69,40.25,31.12,36.36
+cabuar,burn_label,burn evidence,63.2,534,298,50.22,78.12,57.78,68.59
+cabuar,burn_label,healthy vegetation,25.03,534,298,14.61,35.37,20.84,29.23
+cabuar,unburned,burn evidence,33.59,531,298,30.37,36.9,31.23,35.85
+cabuar,unburned,healthy vegetation,40.84,531,298,37.22,44.59,38.34,43.47

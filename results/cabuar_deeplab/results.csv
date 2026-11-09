@@ -1,0 +1,12 @@
+config,arch,seed,prec,rec,f1,macro_f1,miou,n_fire_patches,gpu_hours,best_epoch,stop_epoch,note
+DeepLabV3_Dice_100ep_Vanilla_aug,DeepLabV3,42,74.12,83.59,78.57,67.39,64.71,115,0.112,,,
+DeepLabV3_Dice_100ep_Vanilla_aug,DeepLabV3,1,72.85,85.17,78.53,61.47,64.65,115,0.064,,,
+DeepLabV3_Dice_100ep_Vanilla_aug,DeepLabV3,2,74.33,83.18,78.51,62.51,64.62,115,0.072,,,
+DeepLabV3_Dice_100ep_Vanilla_aug,DeepLabV3,1,83.49,75.41,79.24,62.62,65.62,115,0.088,29,39,rerun_ckpt_lost
+DeepLabV3_Dice_100ep_Vanilla_aug,DeepLabV3,3,72.28,82.02,76.85,58.57,62.4,115,0.096,33,43,new_seed
+DeepLabV3_Dice_100ep_Vanilla_aug,DeepLabV3,4,79.29,65.5,71.74,62.05,55.93,115,0.064,18,28,new_seed
+DeepLabV3_Dice_100ep_Vanilla_aug,DeepLabV3,5,80.26,75.05,77.57,59.94,63.36,115,0.112,41,51,new_seed
+DeepLabV3_Dice_100ep_Vanilla_aug,DeepLabV3,6,74.65,80.68,77.55,61.57,63.33,115,0.106,38,48,new_seed
+DeepLabV3_Dice_100ep_Vanilla_aug,DeepLabV3,7,66.88,88.61,76.23,63.51,61.59,115,0.099,34,44,new_seed
+DeepLabV3_Dice_100ep_Vanilla_aug,DeepLabV3,8,74.81,51.78,61.2,61.29,44.09,115,0.09,30,40,new_seed
+DeepLabV3_Dice_100ep_Vanilla_aug,DeepLabV3,9,82.94,83.6,83.27,64.1,71.34,115,0.1,35,45,new_seed

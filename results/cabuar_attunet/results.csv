@@ -1,0 +1,11 @@
+config,arch,seed,prec,rec,f1,macro_f1,miou,n_fire_patches,gpu_hours,best_epoch,stop_epoch,note
+AttUNet_Dice_100ep_Vanilla_aug,AttUNet,42,85.44,86.48,85.96,70.99,75.37,115,0.167,,,
+AttUNet_Dice_100ep_Vanilla_aug,AttUNet,1,86.8,81.14,83.88,69.85,72.23,115,0.132,,,
+AttUNet_Dice_100ep_Vanilla_aug,AttUNet,2,84.96,87.87,86.39,71.76,76.04,115,0.131,,,
+AttUNet_Dice_100ep_Vanilla_aug,AttUNet,3,86.03,83.66,84.83,71.33,73.66,115,0.108,42,52,new_seed
+AttUNet_Dice_100ep_Vanilla_aug,AttUNet,4,84.11,89.83,86.88,72.31,76.8,115,0.137,55,65,new_seed
+AttUNet_Dice_100ep_Vanilla_aug,AttUNet,5,80.83,90.99,85.61,71.96,74.84,115,0.15,61,71,new_seed
+AttUNet_Dice_100ep_Vanilla_aug,AttUNet,6,85.08,80.69,82.83,71.61,70.69,115,0.127,50,60,new_seed
+AttUNet_Dice_100ep_Vanilla_aug,AttUNet,7,86.27,86.23,86.25,71.06,75.82,115,0.129,51,61,new_seed
+AttUNet_Dice_100ep_Vanilla_aug,AttUNet,8,83.49,84.02,83.76,70.09,72.05,115,0.087,31,41,new_seed
+AttUNet_Dice_100ep_Vanilla_aug,AttUNet,9,86.35,80.07,83.09,68.9,71.07,115,0.11,42,52,new_seed

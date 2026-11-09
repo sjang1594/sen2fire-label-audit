@@ -1,0 +1,9 @@
+arm,config,strategy,seed,prec,rec,f1,miou,macro_f1,sup_rec,veg_rec,amb_rec,sup_n,veg_n,amb_n,minutes,best_epoch,stop_epoch,note
+fireonly,AttUNet+Dice_100ep,Vanilla,42,39.6,22.21,28.46,16.59,20.95,32.83,14.79,34.18,1437800,4613429,1581450,31.4,11,21,new_seed
+fireonly,AttUNet+Dice_100ep,Vanilla,1,24.38,24.69,24.54,13.98,20.23,34.54,16.84,38.62,1437800,4613429,1581450,23.2,14,24,new_seed
+fireonly,AttUNet+Dice_100ep,Vanilla,2,32.94,24.18,27.89,16.2,20.27,35.06,16.59,36.41,1437800,4613429,1581450,17.7,8,18,new_seed
+fireonly,AttUNet+Dice_100ep,Vanilla,3,39.23,27.04,32.02,19.06,23.29,33.98,20.66,39.33,1437800,4613429,1581450,16.7,7,17,new_seed
+fireonly,AttUNet+Dice_100ep,Vanilla,4,36.0,28.19,31.62,18.78,24.11,36.13,21.16,41.48,1437800,4613429,1581450,27.3,18,28,new_seed
+baseline_bridge,AttUNet+Dice_100ep,Vanilla,42,37.81,27.1,31.57,18.74,24.06,34.45,20.48,39.72,1437800,4613429,1581450,29.3,20,30,new_seed
+baseline_bridge,AttUNet+Dice_100ep,Vanilla,1,38.98,26.28,31.39,18.62,23.7,33.99,19.51,39.0,1437800,4613429,1581450,30.3,21,31,new_seed
+baseline_bridge,AttUNet+Dice_100ep,Vanilla,2,39.13,27.16,32.06,19.09,24.25,34.17,20.8,39.33,1437800,4613429,1581450,19.8,10,20,new_seed
