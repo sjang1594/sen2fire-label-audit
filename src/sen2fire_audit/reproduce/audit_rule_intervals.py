@@ -1,4 +1,4 @@
-"""Patch and 4 x 4-block bootstrap of the pooled spectral-rule rates of the labelled pixels."""
+"""Patch and 4 x 4-block bootstrap of the pooled spectral-rule rates of the labeled pixels."""
 import sys
 
 import numpy as np

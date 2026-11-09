@@ -200,8 +200,8 @@ ev = pd.read_csv(P.analysis('audit_rule_rates.csv'))
 ev['n'] = ev.fire_pct / 100 * 512 * 512
 ev['block'] = blocks_of(ev.path)
 rng4 = np.random.default_rng(0)
-for col, label in (('support_frac', 'Labelled pixels with burn evidence (spectral rule)'),
-                   ('veg_unsup_frac', 'Labelled pixels of healthy vegetation (spectral rule)')):
+for col, label in (('support_frac', 'Labeled pixels with burn evidence (spectral rule)'),
+                   ('veg_unsup_frac', 'Labeled pixels of healthy vegetation (spectral rule)')):
     pooled = lambda s, c=col: (s[c] * s.n).sum() / s.n.sum()
     eb = ev.block.unique()
     bb = [pooled(pd.concat([ev[ev.block == b] for b in rng4.choice(eb, len(eb))])) for _ in range(5000)]
@@ -213,10 +213,10 @@ for col, label in (('support_frac', 'Labelled pixels with burn evidence (spectra
 sb_ = pd.read_csv(P.analysis('audit_strata_intervals.csv')).set_index(['dataset', 'stratum', 'rule'])
 rows.append('\\midrule')
 for (ds, st, rule), label in (
-        (('sen2fire', 'nonfire_le1km', 'burn evidence'), 'Burn evidence, non-fire-labelled pixels within 1 km of a label'),
+        (('sen2fire', 'nonfire_le1km', 'burn evidence'), 'Burn evidence, non-fire-labeled pixels within 1 km of a label'),
         (('sen2fire', 'nonfire_1to3km', 'burn evidence'), '\\quad 1--3 km from a label'),
         (('sen2fire', 'nonfire_gt3km', 'burn evidence'), '\\quad more than 3 km from a label'),
-        (('sen2fire', 'nonfire_firefree_patch', 'burn evidence'), '\\quad in patches with no labelled fire'),
+        (('sen2fire', 'nonfire_firefree_patch', 'burn evidence'), '\\quad in patches with no labeled fire'),
         (('cabuar', 'burn_label', 'burn evidence'), 'CaBuAr, burn evidence inside the CAL FIRE perimeters$^{c}$'),
         (('cabuar', 'unburned', 'burn evidence'), 'CaBuAr, burn evidence outside the perimeters$^{c}$'),
         (('cabuar', 'burn_label', 'healthy vegetation'), 'CaBuAr, healthy vegetation inside the perimeters$^{c}$')):

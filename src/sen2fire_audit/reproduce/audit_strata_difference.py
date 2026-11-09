@@ -1,4 +1,4 @@
-"""Paired block bootstrap of the non-fire minus labelled-fire burn-evidence rate, Sen2Fire."""
+"""Paired block bootstrap of the non-fire minus labeled-fire burn-evidence rate, Sen2Fire."""
 import sys
 
 import numpy as np
