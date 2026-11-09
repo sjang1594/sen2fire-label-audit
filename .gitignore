@@ -6,8 +6,8 @@ venv/
 .ipynb_checkpoints/
 
 # Datasets (download separately, see README)
-data/
-Data/
+/data/
+/Data/
 *.npz
 *.tif
 *.tiff
