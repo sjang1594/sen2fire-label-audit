@@ -1,16 +1,17 @@
 {
   "title": "sen2fire-label-audit: code and result tables for \"The Labels Are the Ceiling: A Model-Free Audit of Sen2Fire\"",
   "upload_type": "software",
-  "description": "<p>Training code and configurations of every reported experiment, the result tables behind the paper and its Supplement, and one reproduction command per reported analysis, for S. Jang, R. Singh, S. K. Bhatia and S. Bhaskaran, <em>The Labels Are the Ceiling: A Model-Free Audit of Sen2Fire</em>. The reproduction commands keep the computation and the order of random draws of the scripts that produced the published numbers. The trained checkpoints are archived in a separate Zenodo record, listed in <code>checkpoints/MANIFEST.csv</code>.</p>",
+  "description": "<p>Training code and configurations of every reported experiment, the result tables behind the paper and its Supplement, and one reproduction command per reported analysis, for S. Jang, R. Singh, S. K. Bhatia and S. Bhaskaran, <em>The Labels Are the Ceiling: A Model-Free Audit of Sen2Fire</em>. The reproduction commands keep the computation and the order of random draws of the scripts that produced the published numbers. The trained checkpoints are archived in a separate Zenodo record (doi:10.5281/zenodo.24083276) and listed in <code>checkpoints/MANIFEST.csv</code>.</p>",
   "creators": [
-    {"name": "Jang, Seungho", "orcid": "0009-0007-9374-0516"},
-    {"name": "Singh, Rumandeep"},
-    {"name": "Bhatia, Sanjiv K."},
-    {"name": "Bhaskaran, Sunil"}
+    {"name": "Jang, Seungho", "orcid": "0009-0007-9374-0516", "affiliation": "University of Missouri–St. Louis"},
+    {"name": "Singh, Rumandeep", "orcid": "0009-0001-7985-8856", "affiliation": "University of Missouri–St. Louis"},
+    {"name": "Bhatia, Sanjiv K.", "orcid": "0000-0001-9532-7572", "affiliation": "University of Missouri–St. Louis"},
+    {"name": "Bhaskaran, Sunil", "orcid": "0000-0002-2161-447X", "affiliation": "The Graduate Center, CUNY"}
   ],
   "license": "MIT",
   "keywords": ["wildfire", "Sen2Fire", "CaBuAr", "Sentinel-2", "label quality", "semantic segmentation", "remote sensing"],
   "related_identifiers": [
+    {"identifier": "10.5281/zenodo.24083276", "relation": "isSupplementedBy", "resource_type": "dataset"},
     {"identifier": "10.5281/zenodo.10881058", "relation": "references", "resource_type": "dataset"},
     {"identifier": "10.1109/MGRS.2023.3292467", "relation": "references", "resource_type": "publication-article"}
   ]

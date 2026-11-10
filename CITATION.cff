@@ -6,11 +6,24 @@ authors:
   - family-names: Jang
     given-names: Seungho
     orcid: "https://orcid.org/0009-0007-9374-0516"
+    affiliation: "University of Missouri–St. Louis"
   - family-names: Singh
     given-names: Rumandeep
+    orcid: "https://orcid.org/0009-0001-7985-8856"
+    affiliation: "University of Missouri–St. Louis"
   - family-names: Bhatia
     given-names: Sanjiv K.
+    orcid: "https://orcid.org/0000-0001-9532-7572"
+    affiliation: "University of Missouri–St. Louis"
   - family-names: Bhaskaran
     given-names: Sunil
+    orcid: "https://orcid.org/0000-0002-2161-447X"
+    affiliation: "The Graduate Center, CUNY"
+version: 1.0.0
+date-released: 2026-11-10
 license: MIT
 repository-code: "https://github.com/sjang1594/sen2fire-label-audit"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24083276
+    description: "Trained checkpoints, result tables and a copy of the v1.0.0 code (Zenodo)"

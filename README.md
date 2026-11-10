@@ -14,8 +14,8 @@ bootstrap intervals reproduce to the printed digit.
 
 | Item | Where | DOI |
 |---|---|---|
-| Code and result tables (this repository, release `v1.0.0`) | GitHub, archived on Zenodo | TBD |
-| Trained checkpoints of every reported configuration | Zenodo | TBD |
+| Code and result tables (this repository, release `v1.0.0`) | GitHub, archived on Zenodo | assigned on release |
+| Trained checkpoints of every reported configuration, the result tables and a copy of the `v1.0.0` code | Zenodo | [10.5281/zenodo.24083276](https://doi.org/10.5281/zenodo.24083276) |
 
 ## Layout
 
@@ -135,7 +135,9 @@ the original notebooks in `legacy_id`, which is also how some analysis outputs n
 
 Per-patch macro-F1 is the mean fire-class F1 over test patches whose label covers more than 0.1 %
 (99 Sen2Fire and 115 CaBuAr patches). Two Supplement results use all 102 Sen2Fire patches with any
-labeled fire: the fire-only table and the oversampling macro-F1 rows of the seed-paired table.
+labeled fire: the fire-only table and the oversampling macro-F1 rows of the seed-paired table. The
+`macro_f1` column of `results/sen2fire_attunet_cabuar_impl/results.csv` also averages all 102 patches;
+the value in the paper (32.5) is the 99-patch mean computed from that configuration's `per_patch.csv`.
 
 ## Census sheets
 
