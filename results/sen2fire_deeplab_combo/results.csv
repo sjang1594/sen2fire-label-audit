@@ -1,0 +1,4 @@
+config,strategy,aug,seed,prec,rec,f1,miou,gpu_hours
+DeepLabV3_Combo_w20_50ep,SWIR,no-aug,42,28.8,43.67,34.71,21.0,0.173
+DeepLabV3_Combo_w20_50ep,SWIR,no-aug,1,21.64,48.36,29.9,17.58,0.159
+DeepLabV3_Combo_w20_50ep,SWIR,no-aug,2,24.8,50.73,33.31,19.99,0.187

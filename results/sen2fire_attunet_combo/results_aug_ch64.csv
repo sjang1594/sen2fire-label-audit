@@ -1,0 +1,7 @@
+experiment,config,strategy,seed,base_ch,prec,rec,f1,miou
+E-CH64-aug,AttUNet+Combo_w20_50ep,Vanilla,42,64,35.7,25.22,29.56,17.34
+E-CH64-aug,AttUNet+Combo_w20_50ep,Vanilla,1,64,35.81,26.95,30.76,18.17
+E-CH64-aug,AttUNet+Combo_w20_50ep,Vanilla,2,64,36.69,24.07,29.07,17.01
+E-CH64-aug,AttUNet+Combo_w20_50ep,All-indices,42,64,25.32,26.39,25.85,14.84
+E-CH64-aug,AttUNet+Combo_w20_50ep,All-indices,1,64,29.2,28.24,28.71,16.76
+E-CH64-aug,AttUNet+Combo_w20_50ep,All-indices,2,64,27.96,28.24,28.1,16.35

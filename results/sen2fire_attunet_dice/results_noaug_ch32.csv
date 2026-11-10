@@ -1,0 +1,7 @@
+experiment,config,strategy,seed,prec,rec,f1,miou
+E1,AttUNet+Dice_100ep,All-indices,42,32.65,24.63,28.07,16.33
+E1,AttUNet+Dice_100ep,All-indices,1,39.36,26.86,31.93,19.0
+E1,AttUNet+Dice_100ep,All-indices,2,39.54,25.93,31.32,18.57
+E1,AttUNet+Dice_100ep,Vanilla,42,39.05,26.87,31.83,18.93
+E1,AttUNet+Dice_100ep,Vanilla,1,28.81,27.11,27.93,16.23
+E1,AttUNet+Dice_100ep,Vanilla,2,33.2,28.52,30.69,18.12

@@ -1,0 +1,7 @@
+experiment,config,strategy,seed,base_ch,prec,rec,f1,miou
+E-CH64-aug,AttUNet+Dice_100ep,Vanilla,42,64,39.08,26.1,31.3,18.55
+E-CH64-aug,AttUNet+Dice_100ep,Vanilla,1,64,38.25,27.63,32.08,19.11
+E-CH64-aug,AttUNet+Dice_100ep,Vanilla,2,64,25.48,24.88,25.18,14.4
+E-CH64-aug,AttUNet+Dice_100ep,All-indices,42,64,20.9,28.16,23.99,13.63
+E-CH64-aug,AttUNet+Dice_100ep,All-indices,1,64,35.86,28.33,31.66,18.81
+E-CH64-aug,AttUNet+Dice_100ep,All-indices,2,64,33.97,27.18,30.19,17.78

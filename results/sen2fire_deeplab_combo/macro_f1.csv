@@ -1,0 +1,4 @@
+config,strategy,seed,macro_f1,pooled_f1
+Combo_w20_50ep_no-aug,SWIR,42,24.57,34.72
+Combo_w20_50ep_no-aug,SWIR,1,26.63,29.89
+Combo_w20_50ep_no-aug,SWIR,2,28.12,33.31

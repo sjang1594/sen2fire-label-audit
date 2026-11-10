@@ -1,0 +1,7 @@
+strategy,seed,macro_f1,pooled_f1
+SWIR,42,25.63,34.42
+SWIR,1,26.41,36.26
+SWIR,2,25.4,35.29
+All-indices,42,24.75,37.21
+All-indices,1,26.93,37.22
+All-indices,2,25.46,34.72

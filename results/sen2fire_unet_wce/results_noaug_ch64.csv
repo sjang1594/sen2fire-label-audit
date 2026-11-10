@@ -1,0 +1,7 @@
+experiment,config,strategy,seed,base_ch,prec,rec,f1,miou
+E-CH64-no-aug,UNet+WBCE_w368_50ep,SWIR,42,64,29.33,27.6,28.44,16.58
+E-CH64-no-aug,UNet+WBCE_w368_50ep,SWIR,1,64,27.63,29.24,28.41,16.56
+E-CH64-no-aug,UNet+WBCE_w368_50ep,SWIR,2,64,27.77,27.27,27.51,15.95
+E-CH64-no-aug,UNet+WBCE_w368_50ep,Vanilla,42,64,28.15,28.05,28.1,16.35
+E-CH64-no-aug,UNet+WBCE_w368_50ep,Vanilla,1,64,32.52,26.76,29.36,17.21
+E-CH64-no-aug,UNet+WBCE_w368_50ep,Vanilla,2,64,25.26,27.79,26.47,15.25
